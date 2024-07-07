@@ -15,16 +15,17 @@ pipeline {
                 """
             }
         }
-        post { 
-            always { 
-                echo 'I will always say Hello again!'
-                deleteDir()
-            }
-            success {
-                echo 'i will run the pipeline is usccess'
-            }
-            failure {
-                echo 'i will the pipeline is failure'
-            }
+    }  
+    post { 
+        always { 
+            echo 'I will always say Hello again!'
+            deleteDir()
         }
+        success {
+            echo 'i will run the pipeline is usccess'
+        }
+        failure {
+            echo 'i will the pipeline is failure'
+        }
+    }
 }
