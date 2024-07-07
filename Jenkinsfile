@@ -11,7 +11,7 @@ pipeline {
         stage('install dependencies') {
             steps {
                 sh """
-                dnf install nodejs -y
+                sudo dnf install nodejs -y
                 npm install
                 """
             }
