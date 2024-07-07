@@ -27,6 +27,7 @@ pipeline {
                 npm install
                 ls -lrth 
                 echo $AppVersion
+                zip 
                 """
             }
         }
@@ -34,7 +35,7 @@ pipeline {
     post { 
         always { 
             echo 'I will always say Hello again!'
-            deleteDir()
+            //deleteDir()
         }
         success {
             echo 'i will run the pipeline is usccess'
