@@ -11,6 +11,7 @@ pipeline {
         stage('install dependencies') {
             steps {
                 sh """
+                dnf install nodejs -y
                 npm install
                 """
             }
