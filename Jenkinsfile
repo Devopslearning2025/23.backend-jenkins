@@ -15,6 +15,7 @@ pipeline {
                 sudo dnf module enable nodejs:20 -y
                 sudo dnf install nodejs -y
                 npm install
+                ls -lrth 
                 """
             }
         }
