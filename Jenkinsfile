@@ -7,7 +7,7 @@ pipeline {
         disableConcurrentBuilds()
         ansiColor('xterm')
     }
-    environment{
+    environment {
         dev appVersion = '' //variable declaration
     }
     stages {
