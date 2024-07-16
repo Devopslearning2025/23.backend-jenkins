@@ -10,7 +10,7 @@ pipeline {
     environment {
         def appVersion = '' //variable declaration
         //nexusUrl = 'nexus.devopslearning2025.online:8081'   
-        nexusUrl = 'http://3.81.33.200:8081/'
+        nexusUrl = '3.81.33.200:8081'
     }
     stages {
         stage("read the version") {
