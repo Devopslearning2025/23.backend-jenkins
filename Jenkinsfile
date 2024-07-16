@@ -9,6 +9,7 @@ pipeline {
     }
     environment {
         def appVersion = '' //variable declaration
+        nexusUrl = 'http://3.81.33.200:8081/repository'        
     }
     stages {
         stage("read the version") {
@@ -36,15 +37,10 @@ pipeline {
                 """
             }
         }    
-    environment{
-        nexusUrl = http://3.81.33.200:8081/repository
-    }
-
-        }
         stage('Nexus Artifact upload') {
             steps {
                 script {
-                     nexusArtifactUploader(
+                    nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             protocol: 'http',
                             nexusUrl: "${nexusUrl}",
@@ -61,8 +57,18 @@ pipeline {
                     )
                 }
             }
-        }
-    }  
+       }
+        stage('deploy') {
+            steps {
+                script{
+                    def params = [
+                        string(name: 'appVersion', value: "${appVersion}")
+                    ]
+                    build job: 'backend-deploy' , parameeters: params , wait: false
+                }
+            }
+        }  
+   }  
     post { 
         always { 
             echo 'I will always say Hello again!'
