@@ -35,6 +35,32 @@ pipeline {
                 ls -lrth
                 """
             }
+        }    
+    environment{
+        nexusUrl = http://3.81.33.200:8081/repository
+    }
+
+        }
+        stage('Nexus Artifact upload') {
+            steps {
+                script {
+                     nexusArtifactUploader(
+                            nexusVersion: 'nexus3',
+                            protocol: 'http',
+                            nexusUrl: "${nexusUrl}",
+                            groupId: 'com.expense',
+                            version: version,
+                            repository: 'backend',
+                            credentialsId: 'nexus-auth',
+                            artifacts: [
+                                [artifactId: "backend",
+                                classifier: '',
+                                file: "backend-" + "${appVersion}" + ".zip",
+                                type: 'zip']
+                            ]
+                    )
+                }
+            }
         }
     }  
     post { 
